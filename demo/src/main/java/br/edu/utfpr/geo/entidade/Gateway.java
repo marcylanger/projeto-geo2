@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
 
@@ -47,6 +48,27 @@ public class Gateway extends AbstractEntity {
 	
 	public void setTheGeom() {
 		this.theGeom = null;
+	}
+	
+	public Float getX() {
+		if (this.theGeom != null) {
+			Coordinate coordenada = this.theGeom.getCoordinate();
+			return (float) coordenada.getX();
+		}else if(this.x != null) {
+			return this.x;
+		}
+		return null;
+
+	}
+
+	public Float getY() {
+		if (this.theGeom != null) {
+			Coordinate coordenada = this.theGeom.getCoordinate();
+			return (float) coordenada.getY();
+		}else if(this.y != null) {
+			return this.y;
+		}
+		return null;
 	}
 
 }
